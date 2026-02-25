@@ -1173,7 +1173,8 @@ func main() {
 			// In non-interactive mode with allow-restart, kill MUSHclient before updating
 			if allowRestartFlag {
 				console.Log("MUSHclient is running. Killing MUSHclient to proceed with update...")
-				if err := exec.Command("taskkill", "/IM", "MUSHclient.exe", "/F").Run(); err != nil {
+				baseDir, _ := os.Getwd()
+				if err := process.KillMUSHClient(baseDir); err != nil {
 					console.Log("Error: failed to kill MUSHclient: %v", err)
 					return
 				}
@@ -1181,7 +1182,7 @@ func main() {
 				console.Log("MUSHclient killed successfully. Proceeding with update...")
 				playSoundAsync(successSound, 0.0)
 				// Wait for process to fully terminate
-				if !process.WaitForTermination("MUSHclient.exe", 5*time.Second) {
+				if !process.WaitForMUSHClientTermination(baseDir, 5*time.Second) {
 					console.Log("Warning: MUSHclient may not have fully terminated")
 				}
 			} else {
@@ -2007,13 +2008,13 @@ func handleInstallation() (string, error) {
 		if nonInteractive {
 			// In non-interactive mode, kill MUSHclient before installing
 			console.Log("MUSHclient is running. Killing MUSHclient before installation...")
-			if err := exec.Command("taskkill", "/IM", "MUSHclient.exe", "/F").Run(); err != nil {
+			if err := process.KillMUSHClient(installDir); err != nil {
 				console.Log("Error: failed to kill MUSHclient: %v", err)
 				return "", fmt.Errorf("failed to kill MUSHclient: %w", err)
 			}
 			console.Log("MUSHclient killed successfully. Proceeding with installation...")
 			// Wait for process to fully terminate
-			if !process.WaitForTermination("MUSHclient.exe", 5*time.Second) {
+			if !process.WaitForMUSHClientTermination(installDir, 5*time.Second) {
 				console.Log("Warning: MUSHclient may not have fully terminated")
 			}
 		} else {
@@ -2813,19 +2814,19 @@ func handleToastushMigration(toastushDir string) error {
 	if process.IsMUSHClientRunningInDir(toastushDir) {
 		if nonInteractive {
 			console.Log("MUSHclient is running. Killing MUSHclient before migration...")
-			if err := exec.Command("taskkill", "/IM", "MUSHclient.exe", "/F").Run(); err != nil {
+			if err := process.KillMUSHClient(toastushDir); err != nil {
 				return fmt.Errorf("failed to kill MUSHclient: %w", err)
 			}
 			console.Log("MUSHclient killed successfully")
 			// Wait for process to fully terminate
-			if !process.WaitForTermination("MUSHclient.exe", 5*time.Second) {
+			if !process.WaitForMUSHClientTermination(toastushDir, 5*time.Second) {
 				console.Log("Warning: MUSHclient may not have fully terminated")
 			}
 		} else {
 			fmt.Println("\nMUSHclient is currently running and will be closed to proceed with migration.")
 			if confirmAction("Kill MUSHclient and continue?") {
 				fmt.Println("Closing MUSHclient...")
-				if err := exec.Command("taskkill", "/IM", "MUSHclient.exe", "/F").Run(); err != nil {
+				if err := process.KillMUSHClient(toastushDir); err != nil {
 					fmt.Printf("Error closing MUSHclient: %v\n", err)
 					fmt.Println("Please close MUSHclient manually before proceeding.")
 					playSound(errorSound)
@@ -2834,7 +2835,7 @@ func handleToastushMigration(toastushDir string) error {
 				}
 				fmt.Println("MUSHclient closed successfully.")
 				// Wait for process to fully terminate
-				if !process.WaitForTermination("MUSHclient.exe", 5*time.Second) {
+				if !process.WaitForMUSHClientTermination(toastushDir, 5*time.Second) {
 					fmt.Println("Warning: MUSHclient may not have fully terminated")
 				}
 			} else {

@@ -5,6 +5,7 @@ package main
 import (
 	"archive/zip"
 	"crypto/sha1"
+	"bufio"
 	"embed"
 	"encoding/json"
 	"errors"
@@ -269,6 +270,7 @@ var (
 	allowRestartFlag        bool
 	selfUpdateCheckFlag     bool
 	subcommand              string // Current subcommand being executed
+	shortcutNameFlag        string
 )
 
 // ErrUserCancelled is returned when the user cancels an operation
@@ -565,6 +567,7 @@ func main() {
 	flag.BoolVar(&nonInteractive, "non-interactive", false, "Non-interactive mode: log to file, no prompts, write .update-success")
 	flag.BoolVar(&allowRestartFlag, "allow-restart", false, "Allow restart in non-interactive mode (use with -non-interactive)")
 	flag.BoolVar(&selfUpdateCheckFlag, "self-update-check", false, "Internal: Check for updater self-update (spawned in background)")
+	flag.StringVar(&shortcutNameFlag, "shortcut-name", "Miriani-Next", "Name of the created desktop shortcut")
 
 	// Only parse flags if not using subcommand syntax
 	if subcommand == "" {
@@ -2001,6 +2004,23 @@ func handleInstallation() (string, error) {
 		}
 	}
 
+	// Determine shortcut name
+	shortcutName := "Miriani-Next"
+	if shortcutNameFlag != "" {
+		shortcutName = shortcutNameFlag
+	}
+
+	if !nonInteractive {
+		fmt.Printf("\nEnter name for the desktop shortcut [default: %s]: ", shortcutName)
+		reader := bufio.NewReader(os.Stdin)
+		if response, err := reader.ReadString('\n'); err == nil {
+			response = strings.TrimSpace(response)
+			if response != "" {
+				shortcutName = response
+			}
+		}
+	}
+
 	fmt.Printf("\nThis will install the %s version to: %s\n", channelFlag, installDir)
 
 	// Check if MUSHclient is running before installation
@@ -2205,7 +2225,7 @@ func handleInstallation() (string, error) {
 				}
 			}
 		}()
-		if err := createDesktopIcon(installDir); err != nil {
+		if err := createDesktopIcon(installDir, shortcutName); err != nil {
 			if !quietFlag {
 				fmt.Printf("Warning: failed to create desktop icon: %v\n", err)
 			}
@@ -2954,7 +2974,7 @@ func handleToastushMigration(toastushDir string) error {
 	if !quietFlag {
 		fmt.Println("\nUpdating desktop shortcut...")
 	}
-	if err := createDesktopIcon(toastushDir); err != nil {
+	if err := createDesktopIcon(toastushDir, "Miriani-Next"); err != nil {
 		if !quietFlag {
 			fmt.Printf("Warning: failed to update desktop shortcut: %v\n", err)
 		}
@@ -2986,7 +3006,7 @@ func hashFile(path string) (string, error) {
 	return fmt.Sprintf("%x", hash.Sum(nil)), nil
 }
 
-func createDesktopIcon(targetDir string) error {
+func createDesktopIcon(targetDir string, name string) error {
 	if err := ole.CoInitialize(0); err != nil {
 		return fmt.Errorf("failed to initialize COM: %w", err)
 	}
@@ -3010,7 +3030,10 @@ func createDesktopIcon(targetDir string) error {
 		return err
 	}
 
-	linkPath := filepath.Join(desktop, "Miriani-Next.lnk")
+	if !strings.HasSuffix(strings.ToLower(name), ".lnk") {
+		name = name + ".lnk"
+	}
+	linkPath := filepath.Join(desktop, name)
 
 	link, err := oleutil.CallMethod(shell, "CreateShortcut", linkPath)
 	if err != nil {

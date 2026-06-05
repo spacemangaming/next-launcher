@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/distantorigin/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
 )
 
 // TestNormalUpdate_DifferentialFiles tests that only changed files are identified

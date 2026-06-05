@@ -4,9 +4,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/distantorigin/next-launcher/internal/github"
-	"github.com/distantorigin/next-launcher/internal/install"
-	"github.com/distantorigin/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/github"
+	"github.com/spacemangaming/next-launcher/internal/install"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
 )
 
 // TestFreshInstallation_CompleteFlow tests a complete fresh installation

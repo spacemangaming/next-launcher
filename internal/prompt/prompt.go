@@ -9,7 +9,7 @@ import (
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 
-	"github.com/distantorigin/next-launcher/internal/github"
+	"github.com/spacemangaming/next-launcher/internal/github"
 )
 
 // SoundPlayer defines the interface for playing sounds

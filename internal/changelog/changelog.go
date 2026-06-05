@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/distantorigin/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
 )
 
 // BuildConfig holds configuration for building a changelog

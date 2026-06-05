@@ -1,4 +1,4 @@
-module github.com/distantorigin/next-launcher
+module github.com/spacemangaming/next-launcher
 
 go 1.24.0
 

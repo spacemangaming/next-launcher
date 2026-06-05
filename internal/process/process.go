@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/distantorigin/next-launcher/internal/paths"
+	"github.com/spacemangaming/next-launcher/internal/paths"
 )
 
 // IsNodeListeningOnPort checks if node.exe is running and listening on the specified port

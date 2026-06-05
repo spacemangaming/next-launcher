@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/distantorigin/next-launcher/internal/channel"
-	"github.com/distantorigin/next-launcher/internal/github"
-	"github.com/distantorigin/next-launcher/internal/manifest"
-	"github.com/distantorigin/next-launcher/internal/paths"
+	"github.com/spacemangaming/next-launcher/internal/channel"
+	"github.com/spacemangaming/next-launcher/internal/github"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/paths"
 )
 
 // TestEnvironment represents a complete test environment

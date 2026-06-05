@@ -1,6 +1,6 @@
 # Miriani-Next Updater
 
-![Tests](https://github.com/distantorigin/next-launcher/actions/workflows/test.yml/badge.svg)
+![Tests](https://github.com/spacemangaming/next-launcher/actions/workflows/test.yml/badge.svg)
 
 A Windows-based auto-updater and launcher for the Miriani-Next scripts. This updater provides robust update management, installation handling, and seamless channel switching between stable releases and development builds.
 
@@ -174,7 +174,7 @@ cache/
 
 ```bash
 # Clone the repository
-git clone https://github.com/distantorigin/miriani-next.git
+git clone https://github.com/spacemangaming/miriani-next.git
 cd miriani-next
 
 # Build with version info
@@ -213,7 +213,7 @@ next-launcher/
 
 ### Key Components
 
-- **GitHub Integration** - Fetches release info, commits, and file trees from `distantorigin/miriani-next`
+- **GitHub Integration** - Fetches release info, commits, and file trees from `spacemangaming/miriani-next`
 - **Audio System** - WAV playback with volume control, ducking, and async support (uses beep library)
 - **Console Management** - Windows console attachment, title setting, user prompts
 - **Download Manager** - Concurrent downloads (6 workers), progress tracking, path validation

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/distantorigin/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
 )
 
 func TestBuild(t *testing.T) {

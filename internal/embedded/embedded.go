@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/distantorigin/next-launcher/internal/paths"
+	"github.com/spacemangaming/next-launcher/internal/paths"
 )
 
 // HasData returns true if embedded release data is available.

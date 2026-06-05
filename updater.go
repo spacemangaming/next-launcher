@@ -25,19 +25,19 @@ import (
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 
-	"github.com/distantorigin/next-launcher/internal/audio"
-	"github.com/distantorigin/next-launcher/internal/changelog"
-	"github.com/distantorigin/next-launcher/internal/channel"
-	"github.com/distantorigin/next-launcher/internal/embedded"
-	"github.com/distantorigin/next-launcher/internal/console"
-	"github.com/distantorigin/next-launcher/internal/github"
-	"github.com/distantorigin/next-launcher/internal/install"
-	"github.com/distantorigin/next-launcher/internal/manifest"
-	"github.com/distantorigin/next-launcher/internal/paths"
-	"github.com/distantorigin/next-launcher/internal/process"
-	"github.com/distantorigin/next-launcher/internal/prompt"
-	"github.com/distantorigin/next-launcher/internal/selfupdate"
-	"github.com/distantorigin/next-launcher/internal/version"
+	"github.com/spacemangaming/next-launcher/internal/audio"
+	"github.com/spacemangaming/next-launcher/internal/changelog"
+	"github.com/spacemangaming/next-launcher/internal/channel"
+	"github.com/spacemangaming/next-launcher/internal/embedded"
+	"github.com/spacemangaming/next-launcher/internal/console"
+	"github.com/spacemangaming/next-launcher/internal/github"
+	"github.com/spacemangaming/next-launcher/internal/install"
+	"github.com/spacemangaming/next-launcher/internal/manifest"
+	"github.com/spacemangaming/next-launcher/internal/paths"
+	"github.com/spacemangaming/next-launcher/internal/process"
+	"github.com/spacemangaming/next-launcher/internal/prompt"
+	"github.com/spacemangaming/next-launcher/internal/selfupdate"
+	"github.com/spacemangaming/next-launcher/internal/version"
 )
 
 // ============================================================================
@@ -215,7 +215,7 @@ func initConsole() bool {
 var appVersion = "dev"
 
 const (
-	githubOwner  = "distantorigin"
+	githubOwner  = "spacemangaming"
 	githubRepo   = "miriani-next"
 	manifestFile = ".manifest"
 	versionFile  = "version.json"
@@ -3135,7 +3135,7 @@ func installFromEmbedded(installDir string, embeddedVersion string) (string, err
 	// Download slim updater to replace the fat offline installer
 	if err := downloadSlimUpdater(installDir); err != nil {
 		fmt.Printf("Warning: failed to download updater: %v\n", err)
-		fmt.Println("You can manually download it from: https://github.com/distantorigin/next-launcher/releases")
+		fmt.Println("You can manually download it from: https://github.com/spacemangaming/next-launcher/releases")
 	}
 
 	if !quietFlag {
@@ -3153,7 +3153,7 @@ func installFromEmbedded(installDir string, embeddedVersion string) (string, err
 // This replaces the fat offline installer with the slim updater for future updates.
 func downloadSlimUpdater(installDir string) error {
 	// GitHub releases URL for latest updater
-	updaterURL := "https://github.com/distantorigin/next-launcher/releases/latest/download/miriani.exe"
+	updaterURL := "https://github.com/spacemangaming/next-launcher/releases/latest/download/miriani.exe"
 	targetPath := filepath.Join(installDir, "update.exe")
 
 	// Download to temp file first

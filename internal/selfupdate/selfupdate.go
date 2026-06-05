@@ -29,8 +29,8 @@ type GitHubRelease struct {
 // DefaultConfig returns the default self-update configuration
 func DefaultConfig(currentVersion string) Config {
 	return Config{
-		ReleasesAPIURL: "https://api.github.com/repos/distantorigin/next-launcher/releases/latest",
-		BinaryURL:      "https://github.com/distantorigin/next-launcher/releases/latest/download/miriani.exe",
+		ReleasesAPIURL: "https://api.github.com/repos/spacemangaming/next-launcher/releases/latest",
+		BinaryURL:      "https://github.com/spacemangaming/next-launcher/releases/latest/download/miriani.exe",
 		CurrentVersion: currentVersion,
 	}
 }

@@ -22,7 +22,7 @@ func TestBuild(t *testing.T) {
 		got := Build(updates, deletedFiles, cfg)
 
 		// Check header
-		if !strings.Contains(got, "Miriani-Next Update Changelog") {
+		if !strings.Contains(got, "Miriani-Aura Update Changelog") {
 			t.Error("Build() missing header")
 		}
 		if !strings.Contains(got, "Channel: dev") {

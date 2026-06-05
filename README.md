@@ -1,8 +1,8 @@
-# Miriani-Next Updater
+# Miriani-Aura Updater
 
 ![Tests](https://github.com/spacemangaming/next-launcher/actions/workflows/test.yml/badge.svg)
 
-A Windows-based auto-updater and launcher for the Miriani-Next scripts. This updater provides robust update management, installation handling, and seamless channel switching between stable releases and development builds.
+A Windows-based auto-updater and launcher for the Miriani-Aura scripts. This updater provides robust update management, installation handling, and seamless channel switching between stable releases and development builds.
 
 ## Features
 
@@ -29,7 +29,7 @@ A Windows-based auto-updater and launcher for the Miriani-Next scripts. This upd
 1. Download `miriani.exe` from the latest release
 2. Run the file from any location
 3. Follow the interactive prompts to:
-   - Choose installation directory (default: `%USERPROFILE%\Documents\Miriani-Next`)
+   - Choose installation directory (default: `%USERPROFILE%\Documents\Miriani-Aura`)
    - Select update channel (stable or dev)
    - Configure server preferences (Proxiani or MUDMixer)
 
@@ -174,8 +174,8 @@ cache/
 
 ```bash
 # Clone the repository
-git clone https://github.com/spacemangaming/miriani-next.git
-cd miriani-next
+git clone https://github.com/spacemangaming/Miriani-Aura.git
+cd Miriani-Aura
 
 # Build with version info
 build.bat 1.0.0
@@ -213,7 +213,7 @@ next-launcher/
 
 ### Key Components
 
-- **GitHub Integration** - Fetches release info, commits, and file trees from `spacemangaming/miriani-next`
+- **GitHub Integration** - Fetches release info, commits, and file trees from `spacemangaming/Miriani-Aura`
 - **Audio System** - WAV playback with volume control, ducking, and async support (uses beep library)
 - **Console Management** - Windows console attachment, title setting, user prompts
 - **Download Manager** - Concurrent downloads (6 workers), progress tracking, path validation
@@ -297,4 +297,4 @@ go test -race ./...
 
 ---
 
-**Note**: This updater is specifically designed for the Miriani-Next MUSHclient application and is not a general-purpose updater. (Yet!)
+**Note**: This updater is specifically designed for the Miriani-Aura MUSHclient application and is not a general-purpose updater. (Yet!)

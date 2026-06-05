@@ -91,7 +91,7 @@ func SelectFolder(defaultPath string, cfg Config) (string, error) {
 	defer shell.Release()
 
 	folderObj, err := oleutil.CallMethod(shell, "BrowseForFolder", int(consoleHandle),
-		"Select installation folder for Miriani-Next", 0x10)
+		"Select installation folder for Miriani-Aura", 0x10)
 	if err != nil {
 		return "", fmt.Errorf("failed to show folder dialog: %w", err)
 	}
@@ -130,7 +130,7 @@ func SelectFolder(defaultPath string, cfg Config) (string, error) {
 // InstallationMenu displays an interactive menu for installation options
 // Returns "1" for install, "2" for add updater, "3" for migrate, "" for cancel
 func InstallationMenu(existingInstallFound bool, detectedPath string, toastushPath string, cfg Config) string {
-	fmt.Println("\nMiriani-Next Installation")
+	fmt.Println("\nMiriani-Aura Installation")
 	fmt.Println()
 
 	if existingInstallFound {
@@ -144,13 +144,13 @@ func InstallationMenu(existingInstallFound bool, detectedPath string, toastushPa
 	}
 
 	fmt.Println("  1. Install")
-	fmt.Println("     Full installation of Miriani-Next")
+	fmt.Println("     Full installation of Miriani-Aura")
 	fmt.Println()
 	fmt.Println("  2. Install Updater")
-	fmt.Println("     Add the updater to an existing Miriani-Next installation")
+	fmt.Println("     Add the updater to an existing Miriani-Aura installation")
 	fmt.Println()
 	fmt.Println("  3. Migrate from Toastush")
-	fmt.Println("     Upgrade existing Toastush installation to Miriani-Next")
+	fmt.Println("     Upgrade existing Toastush installation to Miriani-Aura")
 	fmt.Println()
 	fmt.Print("Enter your choice (1, 2, or 3): ")
 
@@ -188,7 +188,7 @@ func ChannelMenu(info ChannelInfo, getBranches func() ([]github.Branch, error), 
 	if info.ForFutureUpdates {
 		fmt.Println("\nSelect Update Channel for future updates")
 	} else {
-		fmt.Println("\nMiriani-Next Update Channel Selection")
+		fmt.Println("\nMiriani-Aura Update Channel Selection")
 	}
 	fmt.Println()
 	fmt.Println("Update channels control how often you receive updates:")

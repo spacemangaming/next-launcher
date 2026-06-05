@@ -14,12 +14,12 @@ import (
 
 // Embedded release files - populated at build time.
 // To build with embedded files:
-//   1. Place miriani-next.zip in internal/embedded/release/
+//   1. Place Miriani-Aura.zip in internal/embedded/release/
 //   2. Run: go build -tags embedded
 //
 // The ZIP should contain .manifest and version.json from the release.
 
-//go:embed release/miriani-next.zip
+//go:embed release/Miriani-Aura.zip
 var embeddedZip []byte
 
 // cachedVersion stores the version extracted from version.json in the ZIP

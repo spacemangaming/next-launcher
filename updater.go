@@ -217,7 +217,7 @@ var appVersion = "dev"
 
 const (
 	githubOwner  = "spacemangaming"
-	githubRepo   = "miriani-next"
+	githubRepo   = "Miriani-Aura"
 	manifestFile = ".manifest"
 	versionFile  = "version.json"
 	excludesFile = ".updater-excludes"
@@ -567,7 +567,7 @@ func main() {
 	flag.BoolVar(&nonInteractive, "non-interactive", false, "Non-interactive mode: log to file, no prompts, write .update-success")
 	flag.BoolVar(&allowRestartFlag, "allow-restart", false, "Allow restart in non-interactive mode (use with -non-interactive)")
 	flag.BoolVar(&selfUpdateCheckFlag, "self-update-check", false, "Internal: Check for updater self-update (spawned in background)")
-	flag.StringVar(&shortcutNameFlag, "shortcut-name", "Miriani-Next", "Name of the created desktop shortcut")
+	flag.StringVar(&shortcutNameFlag, "shortcut-name", "Miriani-Aura", "Name of the created desktop shortcut")
 
 	// Only parse flags if not using subcommand syntax
 	if subcommand == "" {
@@ -732,7 +732,7 @@ func main() {
 
 	// If version flag is set, print version and exit
 	if versionFlag {
-		fmt.Printf("Miriani-Next Updater v%s\n", appVersion)
+		fmt.Printf("Miriani-Aura Updater v%s\n", appVersion)
 		return
 	}
 
@@ -836,7 +836,7 @@ func main() {
 	if !isInstalled() {
 		// Not installed in current directory
 		usr, _ := os.UserHomeDir()
-		expectedInstallDir := filepath.Join(usr, "Documents", "Miriani-Next")
+		expectedInstallDir := filepath.Join(usr, "Documents", "Miriani-Aura")
 
 		// Check if installation exists in expected location
 		existingInstallFound := false
@@ -912,7 +912,7 @@ func main() {
 			// If we didn't auto-detect an installation, prompt for the directory
 			if !existingInstallFound {
 				if !nonInteractive {
-					fmt.Println("\nLocate your existing Miriani-Next installation")
+					fmt.Println("\nLocate your existing Miriani-Aura installation")
 					selectedDir, err := promptForInstallFolder(expectedInstallDir)
 					if err != nil {
 						fmt.Printf("Error selecting folder: %v\n", err)
@@ -924,7 +924,7 @@ func main() {
 					// Verify it's a valid installation
 					if _, err := os.Stat(filepath.Join(installDir, "MUSHclient.exe")); os.IsNotExist(err) {
 						fmt.Printf("\nMUSHclient.exe not found in: %s\n", installDir)
-						fmt.Println("This doesn't appear to be a valid Miriani-Next installation.")
+						fmt.Println("This doesn't appear to be a valid Miriani-Aura installation.")
 						playSound(errorSound)
 						waitForUser("\nPress Enter to exit...")
 						return
@@ -939,7 +939,7 @@ func main() {
 				if !nonInteractive {
 					fmt.Printf("\nFound existing installation at: %s\n", installDir)
 					if !confirmAction("Install updater to this location?") {
-						fmt.Println("\nLocate your Miriani-Next installation")
+						fmt.Println("\nLocate your Miriani-Aura installation")
 						selectedDir, err := promptForInstallFolder(expectedInstallDir)
 						if err != nil {
 							fmt.Printf("Error selecting folder: %v\n", err)
@@ -951,7 +951,7 @@ func main() {
 						// Verify it's a valid installation
 						if _, err := os.Stat(filepath.Join(installDir, "MUSHclient.exe")); os.IsNotExist(err) {
 							fmt.Printf("\nMUSHclient.exe not found in: %s\n", installDir)
-							fmt.Println("This doesn't appear to be a valid Miriani-Next installation.")
+							fmt.Println("This doesn't appear to be a valid Miriani-Aura installation.")
 							playSound(errorSound)
 							waitForUser("\nPress Enter to exit...")
 							return
@@ -1069,10 +1069,10 @@ func main() {
 			}
 
 			// Get the new installation directory (after rename)
-			installDir := filepath.Join(usr, "Documents", "Miriani-Next")
+			installDir := filepath.Join(usr, "Documents", "Miriani-Aura")
 			if toastushPath != "" {
 				// Use the renamed directory
-				installDir = filepath.Join(filepath.Dir(toastushPath), "Miriani-Next")
+				installDir = filepath.Join(filepath.Dir(toastushPath), "Miriani-Aura")
 			}
 
 			// Give a moment for background sounds to finish
@@ -1970,9 +1970,9 @@ func handleInstallation() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to get user home directory: %w", err)
 	}
-	defaultInstallDir := filepath.Join(usr, "Documents", "Miriani-Next")
+	defaultInstallDir := filepath.Join(usr, "Documents", "Miriani-Aura")
 
-	fmt.Println("Welcome to the Miriani-Next installer.")
+	fmt.Println("Welcome to the Miriani-Aura installer.")
 
 	// Check for embedded data early
 	hasEmbedded := embedded.HasData()
@@ -2005,7 +2005,7 @@ func handleInstallation() (string, error) {
 	}
 
 	// Determine shortcut name
-	shortcutName := "Miriani-Next"
+	shortcutName := "Miriani-Aura"
 	if shortcutNameFlag != "" {
 		shortcutName = shortcutNameFlag
 	}
@@ -2159,7 +2159,7 @@ func handleInstallation() (string, error) {
 
 			fmt.Println("\nMUDMixer detected!")
 			fmt.Println("MUDMixer is a local proxy server that can provide additional features.")
-			fmt.Println("Would you like to configure Miriani-Next to connect through MUDMixer?")
+			fmt.Println("Would you like to configure Miriani-Aura to connect through MUDMixer?")
 			fmt.Println("(This changes the connection from " + defaultServer + " to " + localServer + ":" + mudMixerPort + ")")
 
 			if confirmAction("Configure Miriani to use MUDMixer?") {
@@ -2168,7 +2168,7 @@ func handleInstallation() (string, error) {
 					fmt.Printf("Warning: failed to update world file for MUDMixer: %v\n", err)
 				} else {
 					fmt.Println("World file updated successfully!")
-					fmt.Println("Miriani-Next will now connect through MUDMixer (" + localServer + ":" + mudMixerPort + ")")
+					fmt.Println("Miriani-Aura will now connect through MUDMixer (" + localServer + ":" + mudMixerPort + ")")
 				}
 			} else {
 				fmt.Println("Skipping MUDMixer configuration. You can manually change this later.")
@@ -2180,7 +2180,7 @@ func handleInstallation() (string, error) {
 
 			fmt.Println("\nProxiani detected!")
 			fmt.Println("Proxiani is a local proxy server that can provide additional features.")
-			fmt.Println("Would you like to configure Miriani-Next to connect through Proxiani?")
+			fmt.Println("Would you like to configure Miriani-Aura to connect through Proxiani?")
 			fmt.Println("(This changes the connection from " + defaultServer + " to " + localServer + ":" + proxianiPort + ")")
 
 			if confirmAction("Configure Miriani to use Proxiani?") {
@@ -2189,7 +2189,7 @@ func handleInstallation() (string, error) {
 					fmt.Printf("Warning: failed to update world file for Proxiani: %v\n", err)
 				} else {
 					fmt.Println("World file updated successfully!")
-					fmt.Println("Miriani-Next will now connect through Proxiani (" + localServer + ":" + proxianiPort + ")")
+					fmt.Println("Miriani-Aura will now connect through Proxiani (" + localServer + ":" + proxianiPort + ")")
 				}
 			} else {
 				fmt.Println("Skipping Proxiani configuration. You can manually change this later.")
@@ -2885,7 +2885,7 @@ func handleToastushMigration(toastushDir string) error {
 		fmt.Println("The installer will replace this file.")
 		fmt.Println("This may result in loss of custom connection details or world names/configurations.")
 		fmt.Println()
-		fmt.Println("NOTE: Miriani-Next has an entirely different configuration system.")
+		fmt.Println("NOTE: Miriani-Aura has an entirely different configuration system.")
 		fmt.Println("Settings in toastush:config will NOT be migrated.")
 		fmt.Println()
 		if !confirmAction("Continue with migration?") {
@@ -2894,7 +2894,7 @@ func handleToastushMigration(toastushDir string) error {
 	}
 
 	if !quietFlag {
-		fmt.Printf("\nInstalling Miriani-Next files to: %s\n", toastushDir)
+		fmt.Printf("\nInstalling Miriani-Aura files to: %s\n", toastushDir)
 	}
 
 	// Get the appropriate zipball
@@ -2905,17 +2905,17 @@ func handleToastushMigration(toastushDir string) error {
 
 	// Download and extract (as fresh install to replace all files, no file filter = extract all)
 	if err := downloadAndExtractZip(zipURL, toastushDir, true, nil); err != nil {
-		return fmt.Errorf("failed to download Miriani-Next files: %w", err)
+		return fmt.Errorf("failed to download Miriani-Aura files: %w", err)
 	}
 
-	// Rename directory to Miriani-Next
-	newDir := filepath.Join(filepath.Dir(toastushDir), "Miriani-Next")
+	// Rename directory to Miriani-Aura
+	newDir := filepath.Join(filepath.Dir(toastushDir), "Miriani-Aura")
 	if toastushDir != newDir {
 		// Check if target already exists
 		if _, err := os.Stat(newDir); err == nil {
 			if !nonInteractive {
 				fmt.Printf("\nDirectory already exists: %s\n", newDir)
-				if !confirmAction("Remove existing Miriani-Next directory and continue?") {
+				if !confirmAction("Remove existing Miriani-Aura directory and continue?") {
 					return fmt.Errorf("migration cancelled by user")
 				}
 			}
@@ -2974,7 +2974,7 @@ func handleToastushMigration(toastushDir string) error {
 	if !quietFlag {
 		fmt.Println("\nUpdating desktop shortcut...")
 	}
-	if err := createDesktopIcon(toastushDir, "Miriani-Next"); err != nil {
+	if err := createDesktopIcon(toastushDir, "Miriani-Aura"); err != nil {
 		if !quietFlag {
 			fmt.Printf("Warning: failed to update desktop shortcut: %v\n", err)
 		}
@@ -3050,7 +3050,7 @@ func createDesktopIcon(targetDir string, name string) error {
 	if _, err := oleutil.PutProperty(linkDisp, "WorkingDirectory", targetDir); err != nil {
 		return fmt.Errorf("failed to set shortcut working directory: %w", err)
 	}
-	if _, err := oleutil.PutProperty(linkDisp, "Description", "Launch Miriani-Next"); err != nil {
+	if _, err := oleutil.PutProperty(linkDisp, "Description", "Launch Miriani-Aura"); err != nil {
 		return fmt.Errorf("failed to set shortcut description: %w", err)
 	}
 	if _, err := oleutil.PutProperty(linkDisp, "WindowStyle", 1); err != nil {

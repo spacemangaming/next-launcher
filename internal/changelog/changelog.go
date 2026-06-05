@@ -18,7 +18,7 @@ func Build(updates []manifest.FileInfo, deletedFiles []string, cfg BuildConfig) 
 	var changelog strings.Builder
 	totalChanges := len(updates) + len(deletedFiles)
 
-	changelog.WriteString("Miriani-Next Update Changelog\n\n")
+	changelog.WriteString("Miriani-Aura Update Changelog\n\n")
 	changelog.WriteString(fmt.Sprintf("Channel: %s\n", cfg.Channel))
 	changelog.WriteString(fmt.Sprintf("Update completed: %s\n", time.Now().Format("2006-01-02 15:04:05")))
 	changelog.WriteString(fmt.Sprintf("Total changes: %d files (%d updated, %d deleted)\n", totalChanges, len(updates), len(deletedFiles)))

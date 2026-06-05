@@ -1,5 +1,5 @@
 # Ignore embedded release files (placed here at build time)
-miriani-next.zip
+Miriani-Aura.zip
 
 # Keep these files
 !.gitignore

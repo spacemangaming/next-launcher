@@ -14,7 +14,7 @@ This produces a normal updater that downloads files from GitHub.
 
 1. Download the release ZIP:
    ```bash
-   gh release download v4.0.17 --repo spacemangaming/miriani-next --pattern 'miriani-next.zip' --dir internal/embedded/release
+   gh release download v4.0.17 --repo spacemangaming/Miriani-Aura --pattern 'Miriani-Aura.zip' --dir internal/embedded/release
    ```
 
 2. Build with the embedded tag:
